@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FITQUEST</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="FITQUEST">
+<meta name="theme-color" content="#080a0e">
+<style>
+:root{color-scheme:dark;
+--bg:#080a0e;--soft:#11151d;--card:#0f131b;--card2:#141924;--line:#1e2530;--line2:#2b3340;
+--text:#eef1f6;--muted:#6c7480;
+--accent:#6f93c9;--accentD:#50709e;--accentL:rgba(111,147,201,.13);
+--blue:#8aa4cf;--blueL:rgba(138,164,207,.11);
+--green:#6f93c9;--greenD:#50709e;--greenL:rgba(111,147,201,.13);
+--yellow:#c7b177;--orange:#b28a5f;--red:#d9707f;--purple:#9a8bc0}
+*{box-sizing:border-box}
+body{margin:0;color:var(--text);background:var(--bg);min-height:100vh;
+font-family:"Helvetica Neue",Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;-webkit-font-smoothing:antialiased;
+background-image:radial-gradient(900px 460px at 50% -10%,rgba(70,95,140,.14),transparent 62%)}
+.disp{font-family:"Arial Narrow","Helvetica Neue",system-ui,sans-serif}
+.wrap{max-width:520px;margin:0 auto;padding:18px 16px 104px}
+h1,h2,h3{margin:0}
+.big{font-family:"Arial Narrow","Helvetica Neue",system-ui,sans-serif;font-size:30px;font-weight:800;letter-spacing:.3px;text-transform:uppercase}
+.muted{color:var(--muted)}
+.center{text-align:center}
+/* hero */
+.hero{padding-top:60px;text-align:center}
+.kicker{font-size:11px;letter-spacing:4px;font-weight:700;color:var(--muted);text-transform:uppercase;margin-bottom:16px}
+.wordmark{font-family:"Arial Narrow","Helvetica Neue",system-ui,sans-serif;font-size:64px;font-weight:800;letter-spacing:1px;line-height:.92;text-transform:uppercase}
+.wordmark span{color:var(--accent)}
+.mascot{font-size:46px;line-height:1;margin:6px 0;opacity:.9}
+/* buttons */
+.btn{display:block;width:100%;border:none;border-radius:12px;padding:16px;font-family:"Arial Narrow","Helvetica Neue",system-ui,sans-serif;
+font-size:16px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:.12s;
+color:#0a0c10;background:#eef1f6}
+.btn:active{transform:scale(.985)}
+.btn.green{background:#eef1f6;color:#0a0c10}
+.btn.ghost{background:transparent;color:var(--text);border:1.5px solid var(--line2)}
+.btn.ghost:active{background:var(--card)}
+.btn:disabled{background:var(--card2);color:var(--muted);cursor:default;border:1.5px solid var(--line)}
+/* options */
+.opt{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:var(--card);
+border:1px solid var(--line);border-radius:14px;padding:16px 15px;margin-bottom:11px;cursor:pointer;
+transition:.12s;color:var(--text);font-size:16px;font-weight:600}
+.opt:hover{border-color:var(--line2);background:var(--card2)}
+.opt:active{transform:scale(.99)}
+.opt.sel{border-color:var(--accent);background:var(--accentL);box-shadow:0 0 0 1px var(--accent)}
+.opt .em{font-size:24px;flex:0 0 auto;filter:grayscale(.35)}
+.opt .sub{display:block;font-weight:400;font-size:12.5px;color:var(--muted);margin-top:3px}
+.opt .ck{margin-left:auto;font-size:17px;color:var(--accent)}
+/* progress */
+.qbar{height:4px;background:var(--line);border-radius:4px;overflow:hidden;margin:6px 0 26px}
+.qfill{height:100%;background:var(--accent);transition:.3s;border-radius:4px}
+.row{display:flex;align-items:center;gap:10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:12px}
+.pill{display:inline-flex;align-items:center;gap:5px;background:var(--card);border:1px solid var(--line);
+border-radius:10px;padding:7px 12px;font-weight:800;font-size:14px;font-variant-numeric:tabular-nums}
+.pill.flame{color:var(--muted)}.pill.xp{color:var(--accent)}
+.pill .em{font-size:14px;opacity:.85}
+.leaguepill{display:inline-flex;align-items:center;gap:6px;border-radius:8px;padding:5px 10px;font-weight:800;
+font-size:11px;letter-spacing:1px;text-transform:uppercase;border:1px solid}
+.xpwrap{height:5px;background:var(--line);border-radius:4px;overflow:hidden;margin-top:14px}
+.xpfill{height:100%;background:var(--accent);transition:.3s}
+.metawrap{height:4px;background:var(--line);border-radius:3px;overflow:hidden;margin-top:9px}
+.metafill{height:100%;background:var(--muted);transition:.3s}
+/* nav */
+.nav{position:fixed;left:0;right:0;bottom:0;background:rgba(10,12,16,.94);backdrop-filter:blur(14px);
+border-top:1px solid var(--line);display:flex;z-index:30}
+.nav .wrapn{max-width:520px;margin:0 auto;display:flex;width:100%}
+.nav button{flex:1;background:none;border:none;color:var(--muted);padding:11px 0 13px;font-size:9.5px;
+font-weight:800;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;
+font-family:"Arial Narrow","Helvetica Neue",system-ui,sans-serif}
+.nav button .ic{font-size:19px;filter:grayscale(.5);opacity:.7}
+.nav button.on{color:var(--text)}
+.nav button.on .ic{filter:grayscale(0);opacity:1}
+/* exercises */
+.ex{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:11px}
+.ex.done{border-color:var(--accentD);background:var(--accentL)}
+.exhead{display:flex;align-items:flex-start;gap:12px}
+.chk{width:26px;height:26px;flex:0 0 auto;border:1.5px solid var(--line2);border-radius:7px;background:transparent;
+cursor:pointer;display:flex;align-items:center;justify-content:center;color:#0a0c10;font-weight:800}
+.chk.on{background:var(--accent);border-color:var(--accent)}
+.exname{font-family:"Arial Narrow","Helvetica Neue",system-ui,sans-serif;font-weight:800;font-size:17px;letter-spacing:.2px;text-transform:uppercase}
+.extar{color:var(--muted);font-size:12px;font-weight:500;margin-top:3px;letter-spacing:.5px}
+.sets{margin-top:12px;display:flex;flex-direction:column;gap:7px}
+.setrow{display:flex;align-items:center;gap:8px}
+.setrow label{width:26px;color:var(--muted);font-weight:800;font-size:11px}
+.setrow input{max-width:82px;width:100%;padding:10px;border:1px solid var(--line2);border-radius:9px;
+background:var(--soft);color:var(--text);text-align:center;font-size:15px;font-weight:700;font-variant-numeric:tabular-nums}
+.setrow input:focus{outline:none;border-color:var(--accent)}
+.hint{margin-top:9px;background:var(--accentL);border:1px solid rgba(111,147,201,.3);border-radius:9px;
+padding:8px 11px;font-size:12.5px;color:var(--accent);font-weight:600}
+.lb{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);
+border-radius:12px;padding:13px;margin-bottom:8px}
+.lb.me{border-color:var(--accent);background:var(--accentL)}
+.lb .rk{width:28px;text-align:center;font-weight:800;font-size:15px;color:var(--muted);font-variant-numeric:tabular-nums}
+.lb .av{font-size:24px;filter:grayscale(.2)}
+.lb .nm{flex:1;font-weight:700}
+.lb .xp{font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums}
+.badge{display:inline-flex;flex-direction:column;align-items:center;gap:6px;width:70px;text-align:center;font-size:10px;font-weight:600;color:var(--muted)}
+.badge .bic{font-size:28px;filter:grayscale(1);opacity:.28}
+.badge.on{color:var(--text)}.badge.on .bic{filter:grayscale(.15);opacity:1}
+.avpick{display:flex;gap:9px;flex-wrap:wrap;justify-content:center;margin:14px 0}
+.avpick button{font-size:26px;background:var(--card);border:1px solid var(--line);border-radius:12px;width:52px;height:52px;cursor:pointer}
+.avpick button.sel{border-color:var(--accent);background:var(--accentL)}
+.inp{width:100%;padding:15px;border:1px solid var(--line2);border-radius:12px;background:var(--soft);color:var(--text);font-size:17px;text-align:center;font-weight:600}
+.inp:focus{outline:none;border-color:var(--accent)}
+.toast{position:fixed;left:50%;top:18px;transform:translateX(-50%);background:#eef1f6;color:#0a0c10;
+font-weight:800;padding:11px 20px;border-radius:10px;z-index:50;box-shadow:0 10px 34px rgba(0,0,0,.6);
+opacity:0;transition:.25s;pointer-events:none;font-size:13px;letter-spacing:.5px}
+.toast.show{opacity:1;top:26px}
+.tag{display:inline-block;background:var(--accentL);border:1px solid rgba(111,147,201,.3);border-radius:6px;padding:2px 7px;font-size:10.5px;color:var(--accent);font-weight:800;margin-left:5px;letter-spacing:.5px;text-transform:uppercase}
+.daytab{display:flex;gap:8px;overflow-x:auto;padding:6px 0 14px}
+.daytab button{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--muted);
+border-radius:10px;padding:9px 13px;font-family:"Arial Narrow","Helvetica Neue",system-ui,sans-serif;
+font-weight:800;font-size:13px;letter-spacing:.6px;text-transform:uppercase;cursor:pointer;white-space:nowrap}
+.daytab button.on{background:var(--text);color:#0a0c10;border-color:var(--text)}
+.runcard{background:var(--card);border:1px solid var(--line);border-left:2px solid var(--muted);border-radius:12px;padding:14px;margin-bottom:12px}
+.runcard b{color:var(--text);font-weight:700}
+.note{color:var(--muted);font-size:12px;margin-top:16px;line-height:1.6;font-weight:400}
+.celebrate{position:fixed;inset:0;background:rgba(8,10,14,.92);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;z-index:60;opacity:0;transition:.25s}
+.celebrate.show{opacity:1}
+.celebox{text-align:center;transform:scale(.85);transition:.3s cubic-bezier(.2,1.3,.4,1)}
+.celebrate.show .celebox{transform:scale(1)}
+.cbust{font-size:44px;opacity:.9}
+.ctitle{font-family:"Arial Narrow","Helvetica Neue",system-ui,sans-serif;font-size:30px;font-weight:800;color:var(--text);margin-top:6px;letter-spacing:1px;text-transform:uppercase}
+.csub{font-weight:500;margin-top:4px;letter-spacing:.5px}
+::-webkit-scrollbar{height:5px;width:5px}::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
+</style>
+</head>
+<body>
+<div id="app" class="wrap"></div>
+<div id="toast" class="toast"></div>
+<script>
+/* ---------------- Quiz ---------------- */
+const QUIZ=[
+ {q:"Qual seu objetivo principal?",key:"goal",opts:[
+   {v:"hipertrofia",em:"💪",label:"Ganhar músculo",sub:"Hipertrofia e volume"},
+   {v:"forca",em:"🏋️",label:"Ficar mais forte",sub:"Força e cargas pesadas"},
+   {v:"emagrecer",em:"🔥",label:"Perder gordura",sub:"Definição e queima"},
+   {v:"saude",em:"❤️",label:"Saúde e disposição",sub:"Condicionamento geral"}]},
+ {q:"Como você se identifica?",key:"sexo",opts:[
+   {v:"homem",em:"👨",label:"Homem",sub:""},
+   {v:"mulher",em:"👩",label:"Mulher",sub:"Ênfase extra em glúteos"},
+   {v:"outro",em:"🤝",label:"Prefiro não dizer",sub:""}]},
+ {q:"Qual seu nível hoje?",key:"nivel",opts:[
+   {v:"iniciante",em:"🌱",label:"Iniciante",sub:"Menos de 6 meses · menos séries"},
+   {v:"intermediario",em:"⚡",label:"Intermediário",sub:"6 meses a 2 anos"},
+   {v:"avancado",em:"🔥",label:"Avançado",sub:"Mais de 2 anos"}]},
+ {q:"Quantos dias por semana?",key:"days",opts:[
+   {v:3,em:"3️⃣",label:"3 dias",sub:"Corpo todo por treino"},
+   {v:4,em:"4️⃣",label:"4 dias",sub:"Superior / inferior"},
+   {v:5,em:"5️⃣",label:"5 dias",sub:"Grupos dedicados"},
+   {v:6,em:"6️⃣",label:"6 dias",sub:"Volume alto"}]},
+ {q:"Quanto tempo por treino?",key:"tempo",opts:[
+   {v:30,em:"⚡",label:"30 min",sub:"Enxuto e direto"},
+   {v:45,em:"⏱️",label:"45 min",sub:"Equilibrado"},
+   {v:60,em:"🕐",label:"60 min",sub:"Completo"},
+   {v:75,em:"💯",label:"75+ min",sub:"Volume máximo"}]},
+ {q:"O que você quer priorizar?",key:"foco",opts:[
+   {v:"equilibrado",em:"⚖️",label:"Equilibrado",sub:"Corpo inteiro por igual"},
+   {v:"superior",em:"🎽",label:"Parte de cima",sub:"Peito, costas, braços, ombro"},
+   {v:"inferior",em:"🦵",label:"Pernas e glúteos",sub:"Foco em membros inferiores"},
+   {v:"core",em:"🎯",label:"Abdômen / definição",sub:"Core em destaque"}]},
+ {q:"Onde e como você treina?",key:"equip",opts:[
+   {v:"completa",em:"🏟️",label:"Academia completa",sub:"Barras, halteres e máquinas"},
+   {v:"maquinas",em:"⚙️",label:"Prefiro máquinas",sub:"Mais seguro e guiado"},
+   {v:"casa",em:"🏠",label:"Em casa",sub:"Halteres e peso do corpo"}]},
+ {q:"Tem alguma dor ou limitação?",key:"lesao",opts:[
+   {v:"nenhuma",em:"✅",label:"Nenhuma",sub:"Pode vir com tudo"},
+   {v:"joelho",em:"🦵",label:"Joelho",sub:"Evitamos impacto no joelho"},
+   {v:"lombar",em:"🔻",label:"Lombar / coluna",sub:"Trocamos por versões seguras"},
+   {v:"ombro",em:"💥",label:"Ombro",sub:"Cuidado com movimentos acima da cabeça"}]},
+ {q:"Quer incluir corrida no plano?",key:"corrida",opts:[
+   {v:"sim",em:"🏃",label:"Sim, quero correr",sub:"Cardio junto do treino"},
+   {v:"nao",em:"🚫",label:"Só musculação",sub:"Sem corrida por enquanto"}]},
+];
+const AVATARS=["🦁","🐻","🦊","🐯","🦅","🐺","🐉","🦈","🐢","🐝"];
+const TO_MACHINE={
+ "Supino reto com barra":"Supino reto na máquina","Supino inclinado com halteres":"Supino inclinado na máquina",
+ "Agachamento livre":"Agachamento hack (máquina)","Remada curvada com barra":"Remada na máquina",
+ "Levantamento terra romeno":"Mesa flexora","Desenvolvimento militar":"Desenvolvimento na máquina",
+ "Rosca direta com barra":"Rosca na polia","Stiff":"Mesa flexora sentada"};
+const INJURY_SWAP={
+ joelho:{"Agachamento livre":"Leg press 45°","Afundo":"Cadeira extensora"},
+ lombar:{"Agachamento livre":"Agachamento hack (máquina)","Stiff":"Mesa flexora","Levantamento terra romeno":"Mesa flexora","Remada curvada com barra":"Remada na máquina"},
+ ombro:{"Desenvolvimento militar":"Desenvolvimento na máquina","Supino reto com barra":"Supino reto na máquina"}};
+const REP_MAP={
+ "6–10":{forca:"4–6",hip:"6–10",leve:"10–12"},"8–10":{forca:"5–8",hip:"8–10",leve:"10–12"},
+ "8–12":{forca:"6–8",hip:"8–12",leve:"12–15"},"10–12":{forca:"6–8",hip:"10–12",leve:"12–15"},
+ "12":{forca:"8",hip:"12",leve:"15"},"12–15":{forca:"8–10",hip:"12–15",leve:"15–20"},
+ "15":{forca:"10",hip:"15",leve:"20"},"15–20":{forca:"12–15",hip:"15–20",leve:"20"}};
+const TIME_MAX={30:4,45:5,60:6,75:99};
+const SPLITS={
+ 3:[
+  {n:"Corpo A",ex:[["Agachamento livre",3,"8–10"],["Supino reto com barra",3,"8–10"],["Remada curvada com barra",3,"10–12"],["Desenvolvimento militar",3,"10–12"],["Rosca direta com barra",2,"12"],["Abdômen — Prancha",3,"40–60s"]]},
+  {n:"Corpo B",ex:[["Leg press 45°",4,"10–12"],["Supino inclinado com halteres",3,"10–12"],["Puxada alta",3,"10–12"],["Elevação lateral",3,"12–15"],["Tríceps corda",2,"12–15"],["Abdômen — Elevação de pernas",3,"15"]]},
+  {n:"Corpo C",ex:[["Agachamento livre",3,"8–10"],["Crossover na polia",3,"12–15"],["Remada baixa",3,"10–12"],["Desenvolvimento com halteres",3,"10–12"],["Rosca alternada",2,"12"],["Panturrilha em pé",3,"15–20"]]}],
+ 4:[
+  {n:"Superior A",ex:[["Supino reto com barra",4,"6–10"],["Remada curvada com barra",4,"8–10"],["Desenvolvimento militar",3,"8–12"],["Puxada alta",3,"10–12"],["Rosca direta com barra",3,"10–12"],["Tríceps testa",3,"10–12"]]},
+  {n:"Inferior A",ex:[["Agachamento livre",4,"6–10"],["Leg press 45°",4,"10–12"],["Cadeira extensora",3,"12–15"],["Mesa flexora",3,"10–12"],["Panturrilha em pé",4,"15–20"]]},
+  {n:"Superior B",ex:[["Supino inclinado com halteres",4,"8–12"],["Remada baixa",4,"10–12"],["Elevação lateral",4,"12–15"],["Crossover na polia",3,"12–15"],["Rosca alternada",3,"10–12"],["Tríceps corda",3,"12–15"]]},
+  {n:"Inferior B",ex:[["Leg press 45°",4,"10–12"],["Stiff",3,"8–12"],["Cadeira extensora",3,"12–15"],["Cadeira adutora",3,"12–15"],["Cadeira abdutora",3,"12–15"],["Panturrilha sentado",3,"15–20"]]}],
+ 5:[
+  {n:"Peito + Tríceps",ex:[["Supino reto com barra",4,"6–10"],["Supino inclinado com halteres",3,"8–12"],["Crossover na polia",3,"12–15"],["Tríceps testa",3,"8–12"],["Tríceps corda",3,"12–15"]]},
+  {n:"Costas + Bíceps",ex:[["Puxada alta",4,"6–10"],["Remada curvada com barra",4,"8–10"],["Remada baixa",3,"10–12"],["Rosca direta com barra",3,"8–12"],["Rosca alternada",3,"10–12"]]},
+  {n:"Ombros + Abdômen",ex:[["Desenvolvimento militar",4,"6–10"],["Elevação lateral",4,"12–15"],["Elevação frontal",3,"12–15"],["Abdômen — Prancha",3,"40–60s"],["Abdômen — Elevação de pernas",3,"12–15"]]},
+  {n:"Perna",ex:[["Agachamento livre",4,"6–10"],["Leg press 45°",4,"10–12"],["Cadeira extensora",3,"12–15"],["Mesa flexora",3,"10–12"],["Panturrilha em pé",4,"15–20"]]},
+  {n:"Braços",ex:[["Rosca direta com barra",4,"8–12"],["Rosca scott",3,"10–12"],["Rosca martelo",3,"12–15"],["Tríceps testa",4,"8–12"],["Tríceps corda",3,"12–15"]]}],
+ 6:[
+  {n:"Push A",ex:[["Supino reto com barra",4,"6–10"],["Desenvolvimento militar",3,"8–12"],["Crossover na polia",3,"12–15"],["Tríceps testa",3,"8–12"]]},
+  {n:"Pull A",ex:[["Puxada alta",4,"6–10"],["Remada curvada com barra",4,"8–10"],["Rosca direta com barra",3,"8–12"],["Rosca martelo",2,"12–15"]]},
+  {n:"Legs A",ex:[["Agachamento livre",4,"6–10"],["Leg press 45°",4,"10–12"],["Cadeira extensora",3,"12–15"],["Panturrilha em pé",4,"15–20"]]},
+  {n:"Push B",ex:[["Supino inclinado com halteres",4,"8–12"],["Elevação lateral",4,"12–15"],["Crossover na polia",3,"12–15"],["Tríceps corda",3,"12–15"]]},
+  {n:"Pull B",ex:[["Remada baixa",4,"10–12"],["Puxada alta",3,"10–12"],["Rosca alternada",3,"10–12"],["Rosca scott",2,"12"]]},
+  {n:"Legs B",ex:[["Stiff",4,"8–12"],["Cadeira extensora",3,"12–15"],["Cadeira adutora",3,"12–15"],["Panturrilha sentado",3,"15–20"]]}],
+};
+const RUN_DESC=["Corrida leve — 20 min ritmo conversável","Intervalado — 6×400m + trote","Longão — 5–8 km leve"];
+const FRIENDS=[{av:"🐉",nm:"Bruno",xp:1240},{av:"🦊",nm:"Marina",xp:980},{av:"🦅",nm:"Léo",xp:1520},{av:"🐺",nm:"Carla",xp:610},{av:"🦈",nm:"Diego",xp:2050},{av:"🐻",nm:"Rafa",xp:430}];
+const GROUPS=[{em:"🔥",nm:"Projeto Verão",members:24,xp:18200},{em:"🏆",nm:"Amigos da Academia",members:8,xp:9400},{em:"🌅",nm:"Team Corrida 5AM",members:15,xp:12100}];
+const BADGES=[
+ {em:"🎖️",nm:"1º treino",chk:s=>s.workouts>=1},{em:"🏅",nm:"10 treinos",chk:s=>s.workouts>=10},
+ {em:"🔥",nm:"Ofensiva 7",chk:s=>s.streak>=7},{em:"🚀",nm:"Ofensiva 30",chk:s=>s.streak>=30},
+ {em:"⭐",nm:"Nível 5",chk:s=>level(s.xp)>=5},{em:"🌟",nm:"Nível 10",chk:s=>level(s.xp)>=10},
+ {em:"💎",nm:"Liga Ouro",chk:s=>s.xp>=1000}];
+
+/* ---------------- State ---------------- */
+const KEY="fitquest_v4";
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||null;}catch(e){return null;}}
+function save(){localStorage.setItem(KEY,JSON.stringify(S));}
+let S=load();
+let quizStep=0, quizAns={}, tab="treino", curDay=0;
+
+function level(xp){return Math.floor(xp/300)+1;}
+function xpInLevel(xp){return xp%300;}
+function league(xp){if(xp>=2000)return{nm:"Diamante",em:"◆",c:"#8fb6da",bg:"rgba(143,182,218,.1)"};if(xp>=1000)return{nm:"Ouro",em:"◆",c:"#c7b177",bg:"rgba(199,177,119,.1)"};if(xp>=400)return{nm:"Prata",em:"◆",c:"#aab3bf",bg:"rgba(170,179,191,.08)"};return{nm:"Bronze",em:"◆",c:"#b28a5f",bg:"rgba(178,138,95,.1)"};}
+function repFor(base,goal){const m=REP_MAP[base];if(!m)return base;if(goal==="forca")return m.forca;if(goal==="emagrecer"||goal==="saude")return m.leve;return m.hip;}
+function setsFor(baseSets,nivel){if(nivel==="iniciante")return Math.max(2,baseSets-1);return baseSets;}
+function getPlan(){
+  const base=SPLITS[S.ans.days]||SPLITS[4];const cap=TIME_MAX[S.ans.tempo]||6;
+  return base.map(d=>{
+    let ex=d.ex.map(e=>{let name=e[0];const inj=INJURY_SWAP[S.ans.lesao];if(inj&&inj[name])name=inj[name];
+      if(S.ans.equip==="maquinas"&&TO_MACHINE[name])name=TO_MACHINE[name];
+      return [name,setsFor(e[1],S.ans.nivel),repFor(e[2],S.ans.goal)];});
+    const legday=/perna|legs|inferior/i.test(d.n);
+    if(legday&&(S.ans.foco==="inferior"||S.ans.sexo==="mulher")&&!ex.some(x=>/pélvica|gl[uú]teo/i.test(x[0])))
+      ex.splice(Math.min(2,ex.length),0,["Elevação pélvica (glúteo)",3,repFor("10–12",S.ans.goal)]);
+    if(ex.length>cap)ex=ex.slice(0,cap);return {n:d.n,ex};});
+}
+
+/* ---------------- XP / toast / celebrate ---------------- */
+let toastT=null;
+function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove("show"),1700);}
+function addTodayXp(n){const t=todayKey();if(!S.today||S.today.d!==t)S.today={d:t,xp:0};S.today.xp+=n;}
+function todayXp(){const t=todayKey();return (S.today&&S.today.d===t)?S.today.xp:0;}
+function award(n,msg){const before=level(S.xp);S.xp+=n;addTodayXp(n);const after=level(S.xp);save();if(msg)toast(msg);if(after>before)setTimeout(()=>celebrate("NÍVEL "+after,"Você subiu de nível"),250);}
+function celebrate(title,sub){const el=document.createElement("div");el.className="celebrate";
+ el.innerHTML='<div class="celebox"><div class="cbust">◆</div><div class="ctitle">'+title+'</div><div class="csub muted">'+(sub||'')+'</div></div>';
+ document.body.appendChild(el);requestAnimationFrame(()=>el.classList.add("show"));
+ setTimeout(()=>{el.classList.remove("show");setTimeout(()=>el.remove(),300);},1600);}
+
+/* ---------------- Render ---------------- */
+const app=document.getElementById("app");
+function render(){if(!S)return renderWelcome();if(!S.onboarded)return renderQuiz();return renderHome();}
+function renderWelcome(){
+  app.innerHTML='<div class="hero">'+
+    '<div class="kicker">Performance · Auto-rendimento</div>'+
+    '<h1 class="wordmark">FIT<span>QUEST</span></h1>'+
+    '<p class="muted" style="margin:18px 0 32px;font-weight:400;font-size:14.5px;line-height:1.6;letter-spacing:.3px">Treino personalizado, dados de verdade e evolução que dá pra ver. Monte seu plano em 1 minuto.</p>'+
+    '<button class="btn green" id="start">Criar meu plano</button>'+
+    '<p class="note">Protótipo · seus dados ficam salvos neste aparelho.</p></div>';
+  document.getElementById("start").onclick=()=>{S={onboarded:false};quizStep=0;quizAns={};save();render();};
+}
+function renderQuiz(){
+  const total=QUIZ.length;
+  if(quizStep>=total){
+    app.innerHTML='<div class="center" style="padding-top:12px">'+
+      '<div class="qbar"><div class="qfill" style="width:100%"></div></div>'+
+      '<div class="mascot">◆</div><h2 class="big">Quase lá</h2>'+
+      '<p class="muted" style="margin:8px 0 18px;font-weight:400">Como você quer aparecer no ranking?</p>'+
+      '<input class="inp" id="nm" placeholder="Seu nome" maxlength="18">'+
+      '<div class="avpick" id="avp"></div>'+
+      '<button class="btn green" id="fin">Criar perfil</button></div>';
+    let av=AVATARS[0];const avp=document.getElementById("avp");
+    AVATARS.forEach(a=>{const b=document.createElement("button");b.textContent=a;if(a===av)b.className="sel";
+      b.onclick=()=>{av=a;[...avp.children].forEach(c=>c.className="");b.className="sel";};avp.appendChild(b);});
+    document.getElementById("fin").onclick=()=>{const nm=document.getElementById("nm").value.trim()||"Você";
+      S={onboarded:true,ans:quizAns,name:nm,avatar:av,xp:0,streak:0,workouts:0,lastDay:null,log:{},done:{},today:null};
+      save();celebrate("PLANO PRONTO","Bora treinar");tab="treino";curDay=0;render();};
+    return;
+  }
+  const Q=QUIZ[quizStep];const pct=Math.round((quizStep)/total*100);
+  let html='<div class="row" style="margin-bottom:10px"><button class="pill" id="back" style="cursor:pointer;font-size:16px">←</button>'+
+    '<div class="qbar" style="flex:1;margin:0"><div class="qfill" style="width:'+pct+'%"></div></div>'+
+    '<span class="muted" style="font-weight:800;font-size:12px;font-variant-numeric:tabular-nums">'+(quizStep+1)+'/'+total+'</span></div>'+
+    '<h2 class="big" style="margin:16px 0 20px;font-size:24px">'+Q.q+'</h2>';
+  Q.opts.forEach(o=>{const sel=quizAns[Q.key]===o.v?" sel":"";
+    html+='<button class="opt'+sel+'" data-v="'+o.v+'"><span class="em">'+o.em+'</span><span>'+o.label+(o.sub?'<span class="sub">'+o.sub+'</span>':'')+'</span>'+(sel?'<span class="ck">✓</span>':'')+'</button>';});
+  app.innerHTML=html;
+  document.getElementById("back").onclick=()=>{if(quizStep>0){quizStep--;render();}else{S=null;save();render();}};
+  app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{let v=b.dataset.v;if(!isNaN(+v))v=+v;quizAns[Q.key]=v;render();setTimeout(()=>{quizStep++;render();},200);});
+}
+
+function renderHome(){
+  const lv=level(S.xp),inl=xpInLevel(S.xp),lg=league(S.xp),meta=Math.min(todayXp(),50);
+  let head='<div class="row" style="justify-content:space-between;margin-bottom:10px">'+
+    '<div class="row"><div style="font-size:32px">'+S.avatar+'</div><div><div style="font-weight:800;font-size:17px;letter-spacing:-.2px">'+esc(S.name)+'</div>'+
+    '<span class="leaguepill" style="color:'+lg.c+';border-color:'+lg.c+';background:'+lg.bg+'">'+lg.em+' '+lg.nm+'</span></div></div>'+
+    '<div class="row" style="gap:7px"><span class="pill flame"><span class="em">🔥</span>'+S.streak+'</span>'+
+    '<span class="pill xp"><span class="em">⚡</span>'+S.xp+'</span></div></div>'+
+    '<div class="xpwrap"><div class="xpfill" style="width:'+(inl/300*100)+'%"></div></div>'+
+    '<div class="muted" style="font-size:10.5px;margin:9px 0 2px;font-weight:800;letter-spacing:1px;text-transform:uppercase">Nível '+lv+' · '+inl+'/300 XP</div>'+
+    '<div class="metawrap"><div class="metafill" style="width:'+(meta/50*100)+'%"></div></div>'+
+    '<div class="muted" style="font-size:10px;margin:6px 0 20px;font-weight:800;letter-spacing:1px;text-transform:uppercase">Meta de hoje · '+meta+'/50 XP</div>';
+  let body=tab==="treino"?viewTreino():tab==="ranking"?viewRanking():tab==="grupos"?viewGrupos():viewPerfil();
+  app.innerHTML=head+body;wireHome();renderNav();
+}
+function viewTreino(){
+  const days=getPlan();
+  let html='<div class="daytab">';
+  days.forEach((d,i)=>{html+='<button class="'+(i===curDay?"on":"")+'" data-day="'+i+'">'+d.n+'</button>';});
+  html+='</div>';
+  if(S.ans.corrida==="sim"){html+='<div class="runcard"><b>🏃 '+RUN_DESC[curDay%3]+'</b><div class="muted" style="font-size:12px;margin-top:4px;font-weight:400">Ritmo leve e conversável. Aqueça 5–10 min.</div></div>';}
+  const dk=todayKey()+"|"+curDay;const doneMap=S.done[dk]||{};let doneCount=0;const day=days[curDay];
+  day.ex.forEach((e,i)=>{
+    const name=e[0],sets=e[1],reps=e[2];const key=todayKey()+"||"+name;const log=S.log[key]||{sets:[]};
+    const isDone=!!doneMap[i];if(isDone)doneCount++;const top=parseTopRep(reps);let rows="";
+    for(let s=0;s<sets;s++){const sv=log.sets[s]||{w:"",r:""};
+      rows+='<div class="setrow"><label>S'+(s+1)+'</label>'+
+        '<input inputmode="decimal" placeholder="kg" data-k="'+esc(key)+'" data-s="'+s+'" data-f="w" value="'+esc(sv.w||"")+'">'+
+        '<span class="muted">×</span>'+
+        '<input inputmode="numeric" placeholder="reps" data-k="'+esc(key)+'" data-s="'+s+'" data-f="r" data-top="'+(top||"")+'" value="'+esc(sv.r||"")+'"></div>';}
+    let hint="";
+    if(top){const over=log.sets.some(s=>num(s.r)!=null&&num(s.r)>top&&num(s.w)!=null);
+      if(over){const w=Math.max.apply(null,log.sets.filter(s=>num(s.w)!=null).map(s=>num(s.w)));const inc=sets>=4?5:2.5;
+        hint='<div class="hint">↑ Passou das '+top+' reps — suba para ~'+(w+inc)+' kg no próximo treino.</div>';}}
+    html+='<div class="ex'+(isDone?' done':'')+'"><div class="exhead"><div class="chk'+(isDone?' on':'')+'" data-done="'+i+'">'+(isDone?'✓':'')+'</div>'+
+      '<div style="flex:1"><div class="exname">'+esc(name)+'</div><div class="extar">'+sets+' × '+reps+'</div></div></div>'+
+      '<div class="sets">'+rows+'</div>'+hint+'</div>';
+  });
+  const all=day.ex.length;
+  html+='<button class="btn green" id="finish" '+(doneCount<all?'disabled':'')+'>'+(doneCount>=all?'Concluir treino · +'+(all*10+50)+' XP':'Marque todos · '+doneCount+'/'+all)+'</button>';
+  return html;
+}
+function viewRanking(){
+  const me={av:S.avatar,nm:S.name,xp:S.xp,me:true};const lg=league(S.xp);
+  const all=FRIENDS.concat([me]).sort((a,b)=>b.xp-a.xp);
+  let html='<h2 class="big" style="font-size:22px;margin:6px 0 4px">Ranking</h2>'+
+    '<p class="muted" style="font-weight:400;margin:0 0 16px;font-size:13px">Liga <b style="color:'+lg.c+'">'+lg.nm+'</b> · você e seus amigos</p>';
+  all.forEach((p,i)=>{const med=i===0?"🥇":i===1?"🥈":i===2?"🥉":"";
+    html+='<div class="lb'+(p.me?' me':'')+'"><div class="rk">'+(med||(i+1))+'</div><div class="av">'+p.av+'</div>'+
+      '<div class="nm">'+esc(p.nm)+(p.me?'<span class="tag">você</span>':'')+'</div><div class="xp">'+p.xp+'</div></div>';});
+  html+='<p class="note">Amigos de exemplo. Com login e banco de dados, o ranking fica real entre usuários.</p>';
+  return html;
+}
+function viewGrupos(){
+  let html='<h2 class="big" style="font-size:22px;margin:6px 0 14px">Grupos</h2>';
+  GROUPS.forEach(g=>{html+='<div class="lb"><div class="av">'+g.em+'</div><div class="nm">'+g.nm+'<div class="muted" style="font-size:12px;font-weight:400">'+g.members+' membros</div></div><div class="xp">'+g.xp+'</div></div>';});
+  html+='<button class="btn ghost" id="newgrp" style="margin-top:6px">+ Criar grupo</button>';
+  html+='<p class="note">Grupos de exemplo. Convidar amigos de verdade precisa de contas conectadas.</p>';
+  return html;
+}
+function viewPerfil(){
+  const lg=league(S.xp);
+  let html='<h2 class="big" style="font-size:22px;margin:6px 0 12px">Perfil</h2>';
+  const rows=[["Objetivo",labelOf("goal")],["Nível",labelOf("nivel")],["Dias/semana",S.ans.days],["Tempo/treino",(S.ans.tempo||60)+" min"],["Foco",labelOf("foco")],["Equipamento",labelOf("equip")],["Limitação",labelOf("lesao")],["Corrida",S.ans.corrida==="sim"?"Sim":"Não"]];
+  html+='<div class="card">'+rows.map((r,i)=>'<div class="row" style="justify-content:space-between'+(i?';margin-top:10px':'')+'"><span class="muted" style="font-weight:400;font-size:13px">'+r[0]+'</span><b style="font-size:14px">'+r[1]+'</b></div>').join("")+'</div>';
+  html+='<h3 class="disp" style="margin:18px 0 12px;font-size:15px;letter-spacing:1px;text-transform:uppercase;font-weight:800">Medalhas</h3><div class="row" style="flex-wrap:wrap;gap:10px">';
+  BADGES.forEach(b=>{const on=b.chk(S);html+='<div class="badge'+(on?' on':'')+'"><div class="bic">'+b.em+'</div>'+b.nm+'</div>';});
+  html+='</div>';
+  html+='<div class="card" style="margin-top:18px;text-align:center"><div class="leaguepill" style="color:'+lg.c+';border-color:'+lg.c+';background:'+lg.bg+';font-size:12px;padding:6px 12px">'+lg.em+' Liga '+lg.nm+'</div>'+
+    '<div class="row" style="justify-content:space-around;text-align:center;margin-top:16px">'+
+    '<div><div class="big" style="font-size:26px">'+S.workouts+'</div><div class="muted" style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px">treinos</div></div>'+
+    '<div><div class="big" style="font-size:26px">'+S.streak+'</div><div class="muted" style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px">ofensiva</div></div>'+
+    '<div><div class="big" style="font-size:26px">'+level(S.xp)+'</div><div class="muted" style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px">nível</div></div></div></div>';
+  html+='<button class="btn ghost" id="redo" style="margin-top:8px">↻ Refazer triagem</button>';
+  return html;
+}
+function labelOf(key){const q=QUIZ.find(x=>x.key===key);if(!q)return S.ans[key];const o=q.opts.find(x=>x.v===S.ans[key]);return o?o.label:S.ans[key];}
+
+function wireHome(){
+  app.querySelectorAll("[data-day]").forEach(b=>b.onclick=()=>{curDay=+b.dataset.day;render();});
+  app.querySelectorAll("input[data-k]").forEach(inp=>inp.addEventListener("input",()=>{
+    const k=inp.dataset.k,s=+inp.dataset.s,f=inp.dataset.f;
+    if(!S.log[k])S.log[k]={sets:[]};while(S.log[k].sets.length<=s)S.log[k].sets.push({w:"",r:""});
+    S.log[k].sets[s][f]=inp.value;save();
+    if(f==="r"){const top=+inp.dataset.top;const r=num(inp.value);if(top&&r&&r>top){award(5,"↑ Passou do alvo · +5 XP");render();}}
+  }));
+  app.querySelectorAll(".chk[data-done]").forEach(c=>c.onclick=()=>{
+    const i=+c.dataset.done;const dk=todayKey()+"|"+curDay;if(!S.done[dk])S.done[dk]={};
+    S.done[dk][i]=!S.done[dk][i];if(S.done[dk][i])award(10,"+10 XP");else save();render();});
+  const fin=document.getElementById("finish");
+  if(fin)fin.onclick=()=>{const t=todayKey();if(S.lastDay!==t){if(isYesterday(S.lastDay))S.streak+=1;else S.streak=1;S.lastDay=t;}
+    S.workouts+=1;award(50);celebrate("TREINO CONCLUÍDO","+50 XP · ofensiva "+S.streak);tab="perfil";setTimeout(render,400);};
+  const redo=document.getElementById("redo");
+  if(redo)redo.onclick=()=>{if(confirm("Refazer a triagem? O plano será recriado (XP e medalhas continuam)."))
+    {S.onboarded=false;quizStep=0;quizAns=Object.assign({},S.ans);save();render();}};
+  const ng=document.getElementById("newgrp");if(ng)ng.onclick=()=>toast("No app completo você cria e convida amigos aqui");
+}
+function renderNav(){
+  let nav=document.querySelector(".nav");if(!nav){nav=document.createElement("div");nav.className="nav";document.body.appendChild(nav);}
+  const items=[["treino","🏋️","Treino"],["ranking","🏆","Ranking"],["grupos","👥","Grupos"],["perfil","👤","Perfil"]];
+  nav.innerHTML='<div class="wrapn">'+items.map(it=>'<button class="'+(tab===it[0]?"on":"")+'" data-tab="'+it[0]+'"><span class="ic">'+it[1]+'</span>'+it[2]+'</button>').join("")+'</div>';
+  nav.querySelectorAll("[data-tab]").forEach(b=>b.onclick=()=>{tab=b.dataset.tab;render();});
+}
+
+/* ---------------- utils ---------------- */
+function esc(s){return String(s).replace(/"/g,'&quot;').replace(/</g,'&lt;');}
+function num(v){const n=parseFloat(String(v).replace(",","."));return isNaN(n)?null:n;}
+function parseTopRep(reps){const r=String(reps);if(/falha/i.test(r)||/\ds/.test(r)||/s$/.test(r))return null;const rg=r.match(/(\d+)\s*[–-]\s*(\d+)/);if(rg)return +rg[2];const f=r.match(/(\d+)/);return f?+f[1]:null;}
+function todayKey(){const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
+function isYesterday(prev){if(!prev)return false;const d=new Date(todayKey());const p=new Date(prev);return Math.round((d-p)/86400000)===1;}
+
+render();
+</script>
+</body>
+</html>
