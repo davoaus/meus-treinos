@@ -87,6 +87,25 @@ h1 b{color:var(--accent)}
   border-left:4px solid var(--accent);border-radius:8px;padding:9px 12px}
 .region{display:inline-block;margin-top:4px;background:rgba(232,176,75,.13);border:1px solid rgba(232,176,75,.3);
   color:var(--gold);border-radius:8px;padding:2px 9px;font-size:11.5px;font-weight:700}
+.grouphead svg{width:26px;height:40px;flex:0 0 auto}
+.exactions{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap;align-items:center}
+.swapsel{flex:1;min-width:150px;padding:8px 9px;border:1px solid var(--line2);border-radius:9px;background:#0c1119;color:#cdd7e4;font-size:12.5px}
+.swapsel:focus{outline:none;border-color:var(--accent)}
+.minibtn.del{color:#ffb0b0}
+.minibtn.del:hover{border-color:var(--down);color:#ffd0d0}
+.bodyviews{display:flex;gap:10px;justify-content:center;margin:8px 0 14px}
+.bodymap{width:48%;max-width:210px;height:auto;background:#0c1119;border:1px solid var(--line);border-radius:14px;padding:6px}
+.mz{fill:rgba(77,159,255,.28);stroke:var(--accent);stroke-width:.6;cursor:pointer;transition:.12s}
+.mz:hover{fill:rgba(77,159,255,.6)}
+.mz.sel{fill:var(--gold);stroke:#fff}
+.bodylbl{fill:var(--muted);font-size:7px;font-weight:800;text-anchor:middle;letter-spacing:1px}
+.mdetail{background:linear-gradient(180deg,var(--card),var(--card2));border:1px solid var(--line);border-radius:14px;padding:14px}
+.mdhead{font-size:19px;font-weight:800;color:#fff;display:flex;align-items:center;gap:8px}
+.msubs{margin:9px 0;color:var(--muted);font-size:12.5px}
+.msub{display:inline-block;background:#0e141d;border:1px solid var(--line);border-radius:8px;padding:2px 9px;margin:2px 5px 2px 0;color:#cdd7e4;font-size:11.5px;font-weight:600}
+.mex{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-top:1px solid var(--line)}
+.mexn{font-weight:600;color:#eaf1fb;font-size:14px}
+.mexr{color:var(--gold);font-weight:800;font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap}
 .extarget{color:var(--muted);font-size:12.5px}
 .rm{color:var(--down);font-size:12px;cursor:pointer;opacity:.75}
 .rm:hover{opacity:1}
@@ -290,9 +309,56 @@ const EXERCISE_INFO={
  "Abdômen — Prancha":{g:"Abdômen",r:"Core · estabilização"},
  "Abdômen — Elevação de pernas":{g:"Abdômen",r:"Abdômen inferior"},
  "Abdômen — Crunch na polia":{g:"Abdômen",r:"Abdômen superior (reto)"},
- "Abdômen — Russian twist":{g:"Abdômen",r:"Oblíquos"}
+ "Abdômen — Russian twist":{g:"Abdômen",r:"Oblíquos"},
+ "Supino reto com halteres":{g:"Peito",r:"Peito medial/geral"},
+ "Supino inclinado com barra":{g:"Peito",r:"Peito superior (clavicular)"},
+ "Crucifixo inclinado com halteres":{g:"Peito",r:"Peito superior"},
+ "Peck deck (voador)":{g:"Peito",r:"Peito · contração"},
+ "Supino máquina (Hammer)":{g:"Peito",r:"Peito medial/geral"},
+ "Flexão de braço":{g:"Peito",r:"Peito · peso do corpo"},
+ "Puxada com triângulo":{g:"Costas",r:"Dorsal · pegada fechada"},
+ "Puxada supinada":{g:"Costas",r:"Dorsal + bíceps"},
+ "Remada máquina articulada":{g:"Costas",r:"Meio das costas"},
+ "Levantamento terra":{g:"Costas",r:"Costas + posterior (cadeia)"},
+ "Desenvolvimento com halteres":{g:"Ombro",r:"Deltoide anterior + lateral"},
+ "Elevação lateral na polia":{g:"Ombro",r:"Deltoide lateral"},
+ "Elevação lateral na máquina":{g:"Ombro",r:"Deltoide lateral"},
+ "Remada alta":{g:"Ombro",r:"Deltoide lateral + trapézio"},
+ "Encolhimento com halteres":{g:"Trapézio",r:"Trapézio superior"},
+ "Tríceps unilateral na polia":{g:"Tríceps",r:"Cabeça lateral"},
+ "Tríceps coice":{g:"Tríceps",r:"Cabeça longa"},
+ "Tríceps mergulho na máquina":{g:"Tríceps",r:"Tríceps geral"},
+ "Rosca concentrada":{g:"Bíceps",r:"Pico do bíceps"},
+ "Rosca inversa":{g:"Bíceps",r:"Braquiorradial · antebraço"},
+ "Rosca na polia":{g:"Bíceps",r:"Bíceps · tensão contínua"},
+ "Rosca scott na máquina":{g:"Bíceps",r:"Cabeça curta · pico"},
+ "Agachamento no Smith":{g:"Perna",r:"Quadríceps (guiado)"},
+ "Agachamento livre":{g:"Perna",r:"Quadríceps + glúteo"},
+ "Cadeira flexora sentada":{g:"Perna",r:"Posterior de coxa"},
+ "Afundo / búlgaro (cada perna)":{g:"Perna",r:"Quadríceps + glúteo (unilateral)"},
+ "Elevação pélvica (hip thrust)":{g:"Perna",r:"Glúteo máximo"},
+ "Panturrilha no leg press":{g:"Perna",r:"Panturrilha · gastrocnêmio"},
+ "Abdominal supra":{g:"Abdômen",r:"Abdômen superior"},
+ "Abdominal na máquina":{g:"Abdômen",r:"Abdômen · com carga"},
+ "Prancha lateral":{g:"Abdômen",r:"Oblíquos · estabilização"}
 };
 function grpEmoji(g){return ({Peito:"🎽",Costas:"🪃",Ombro:"🔺",Tríceps:"🦾",Bíceps:"💪",Perna:"🦵",Abdômen:"🔥",Trapézio:"⬆️"})[g]||"•";}
+function altsFor(name){const g=(EXERCISE_INFO[name]||{}).g;if(!g)return [];return Object.keys(EXERCISE_INFO).filter(n=>EXERCISE_INFO[n].g===g&&n!==name);}
+function bodySVG(g){const A='#4d9fff',S='#3a4656';
+  const base='<circle cx="20" cy="7" r="5" fill="'+S+'"/><rect x="13" y="13" width="14" height="21" rx="5" fill="'+S+'"/>'+
+    '<circle cx="12" cy="15" r="3" fill="'+S+'"/><circle cx="28" cy="15" r="3" fill="'+S+'"/>'+
+    '<rect x="8" y="16" width="4" height="16" rx="2" fill="'+S+'"/><rect x="28" y="16" width="4" height="16" rx="2" fill="'+S+'"/>'+
+    '<rect x="14" y="34" width="5" height="20" rx="2" fill="'+S+'"/><rect x="21" y="34" width="5" height="20" rx="2" fill="'+S+'"/>';
+  const hl={Peito:'<rect x="13" y="15" width="14" height="7" rx="3" fill="'+A+'"/>',
+    Costas:'<rect x="13" y="15" width="14" height="10" rx="3" fill="'+A+'"/>',
+    Ombro:'<circle cx="12" cy="15" r="3.4" fill="'+A+'"/><circle cx="28" cy="15" r="3.4" fill="'+A+'"/>',
+    "Trapézio":'<rect x="15" y="11.5" width="10" height="4.5" rx="2" fill="'+A+'"/>',
+    "Bíceps":'<rect x="8" y="16.5" width="4" height="8" rx="2" fill="'+A+'"/><rect x="28" y="16.5" width="4" height="8" rx="2" fill="'+A+'"/>',
+    "Tríceps":'<rect x="8" y="16.5" width="4" height="8" rx="2" fill="'+A+'"/><rect x="28" y="16.5" width="4" height="8" rx="2" fill="'+A+'"/>',
+    Perna:'<rect x="14" y="34" width="5" height="12" rx="2" fill="'+A+'"/><rect x="21" y="34" width="5" height="12" rx="2" fill="'+A+'"/>',
+    "Abdômen":'<rect x="14" y="24" width="12" height="8" rx="3" fill="'+A+'"/>'};
+  return '<svg viewBox="0 0 40 60" xmlns="http://www.w3.org/2000/svg">'+base+(hl[g]||'')+'</svg>';
+}
 const DAYS = ["Segunda","Terça","Quarta","Quinta","Sexta","Sábado"];
 const JS_TO_DAY = {1:"Segunda",2:"Terça",3:"Quarta",4:"Quinta",5:"Sexta",6:"Sábado",0:null};
 const KEY="davo_treino_v1";
@@ -309,7 +375,7 @@ function migrateNames(s){
   Object.keys(s.custom||{}).forEach(day=>{(s.custom[day]||[]).forEach(e=>{if(RENAME_MAP[e[0]]){e[0]=RENAME_MAP[e[0]];changed=true;}});});
   return changed;
 }
-function load(){try{const s=JSON.parse(localStorage.getItem(KEY))||{};if(!s.log)s.log={};if(!s.custom)s.custom={};if(!s.runs)s.runs={};if(!s.meals)s.meals={};if(s.runWeek===undefined)s.runWeek=2;if(migrateNames(s))localStorage.setItem(KEY,JSON.stringify(s));return s;}catch(e){return{log:{},custom:{},runs:{},meals:{},runWeek:2};}}
+function load(){try{const s=JSON.parse(localStorage.getItem(KEY))||{};if(!s.log)s.log={};if(!s.custom)s.custom={};if(!s.runs)s.runs={};if(!s.meals)s.meals={};if(!s.swaps)s.swaps={};if(!s.removed)s.removed={};if(s.runWeek===undefined)s.runWeek=2;if(migrateNames(s))localStorage.setItem(KEY,JSON.stringify(s));return s;}catch(e){return{log:{},custom:{},runs:{},meals:{},swaps:{},removed:{},runWeek:2};}}
 function save(s){localStorage.setItem(KEY,JSON.stringify(s));}
 let state=load();
 const todayDay = JS_TO_DAY[new Date().getDay()] || "Segunda";
@@ -348,8 +414,9 @@ function runCard(day){
 
 // plan = base + custom exercises for the day (custom marked with flag at index 3)
 function planFor(day){
-  const base=(BASE[day].ex||[]).map(e=>[e[0],e[1],e[2],false,e[3]||90]);
-  const cust=(state.custom[day]||[]).map(e=>[e[0],e[1],e[2],true,e[3]||60]);
+  const rem=state.removed[day]||[];const sw=state.swaps[day]||{};
+  const base=(BASE[day].ex||[]).filter(e=>rem.indexOf(e[0])<0).map(e=>{const nm=sw[e[0]]||e[0];return [nm,e[1],e[2],false,e[3]||90,e[0]];});
+  const cust=(state.custom[day]||[]).map(e=>[e[0],e[1],e[2],true,e[3]||60,e[0]]);
   return base.concat(cust);
 }
 function lk(date,ex){return date+"||"+ex;}
@@ -420,6 +487,11 @@ function renderTabs(){
   nu.textContent="🍽️ Nutrição";
   nu.onclick=()=>{current="__nutri";renderTabs();renderView();};
   t.appendChild(nu);
+  const bd=document.createElement("button");
+  bd.className="tab"+(current==="__body"?" active":"");
+  bd.textContent="🧍 Corpo";
+  bd.onclick=()=>{current="__body";renderTabs();renderView();};
+  t.appendChild(bd);
 }
 
 function renderView(){
@@ -427,6 +499,7 @@ function renderView(){
   if(current==="__prog"){renderProgress(v);return;}
   if(current==="__metrics"){renderMetrics(v);return;}
   if(current==="__nutri"){renderNutri(v);return;}
+  if(current==="__body"){renderBody(v);return;}
   if(current==="__run"){renderRun(v);return;}
   const day=BASE[current];const date=todayStr();
   const list=planFor(current);
@@ -441,9 +514,9 @@ function renderView(){
   html+='<div class="timebadge">⏱ Tempo estimado do treino: <b>~'+fmtMin(totSec)+' min</b> <span class="tb2">(com ~8 min de aquecimento)</span></div>';
   html+='<div class="progresswrap"><div class="progressbar" id="pbar"></div></div>';
   glist.forEach((e,i)=>{
-    const [name,sets,reps,isCustom,rest]=e;const en=entry(date,name);
+    const [name,sets,reps,isCustom,rest]=e;const orig=e[5]||name;const en=entry(date,name);
     const _gi=EXERCISE_INFO[name]||{};const _grp=_gi.g||"Outros";const _reg=_gi.r||"";
-    if(_grp!==lastGroup){html+='<div class="grouphead">'+grpEmoji(_grp)+' '+_grp+'</div>';lastGroup=_grp;}
+    if(_grp!==lastGroup){html+='<div class="grouphead">'+bodySVG(_grp)+'<span>'+_grp+'</span></div>';lastGroup=_grp;}
     if(en.done)done++;
     while(en.sets.length<sets)en.sets.push({w:"",r:""});
     const nRows=Math.max(sets,en.sets.length);
@@ -475,11 +548,15 @@ function renderView(){
         '<div class="chk'+(en.done?' on':'')+'" data-done="'+esc(lk(date,name))+'">'+(en.done?'✓':'')+'</div>'+
         '<div style="flex:1"><div class="exname">'+esc(name)+'</div>'+
         (_reg?'<div class="region">🎯 '+esc(_reg)+'</div>':'')+
-        '<div class="extarget">Alvo: '+sets+' × '+reps+' · desc. '+rest+'s'+(isCustom?' &nbsp;·&nbsp; <span class="rm" data-rmex="'+esc(name)+'">remover</span>':'')+'</div></div>'+
+        '<div class="extarget">Alvo: '+sets+' × '+reps+' · desc. '+rest+'s</div></div>'+
       '</div>'+lastInfo+targetSuggestion(prev,reps,rest)+
       '<div class="sets">'+setRows+'</div>'+
       '<div class="setbtns"><button class="minibtn" data-addset="'+esc(lk(date,name))+'">+ série</button>'+
       (en.sets.length>sets?'<button class="minibtn" data-delset="'+esc(lk(date,name))+'">− série</button>':'')+'</div>'+
+      '<div class="exactions">'+
+        (EXERCISE_INFO[name]?'<select class="swapsel" data-swap="'+esc(orig)+'"><option value="">⇄ Trocar por…</option>'+altsFor(name).map(a=>'<option value="'+esc(a)+'">'+esc(a)+'</option>').join('')+'</select>':'')+
+        '<button class="minibtn del" data-del="'+esc(orig)+'" data-custom="'+(isCustom?'1':'0')+'">✕ Remover</button>'+
+      '</div>'+
       stats+'</div>';
   });
   // add-exercise box
@@ -489,6 +566,7 @@ function renderView(){
     '<input class="small" id="newReps" placeholder="reps" value="8–12">'+
     '<input class="small" id="newRest" inputmode="numeric" placeholder="desc.s" value="60">'+
     '<button class="minibtn" id="addEx">+ Adicionar exercício</button>'+
+    (((state.removed[current]&&state.removed[current].length)||(state.swaps[current]&&Object.keys(state.swaps[current]).length))?'<button class="minibtn" id="restoreDay">↺ Restaurar dia</button>':'')+
     '</div></div>';
   if(total===0)html='<div class="dayhead"><div><h2>'+current+'</h2><div class="focus">'+day.focus+'</div></div>'+(day.run?'<span class="badge run">🏃 '+day.run+'</span>':'')+'</div>'+
     (RUN_TYPES[current]?runCard(current):'')+
@@ -519,9 +597,16 @@ function wire(v,date){
   v.querySelectorAll("[data-delset]").forEach(b=>b.addEventListener("click",()=>{
     const k=b.dataset.delset;if(state.log[k]&&state.log[k].sets.length>0){state.log[k].sets.pop();save(state);renderView();}}));
   v.querySelectorAll(".rest[data-rest]").forEach(b=>b.addEventListener("click",()=>startTimer(+b.dataset.rest)));
-  v.querySelectorAll("[data-rmex]").forEach(x=>x.addEventListener("click",()=>{
-    const name=x.dataset.rmex;const arr=state.custom[current]||[];
-    state.custom[current]=arr.filter(e=>e[0]!==name);save(state);renderView();}));
+  v.querySelectorAll(".swapsel[data-swap]").forEach(sel=>sel.addEventListener("change",()=>{
+    const o=sel.dataset.swap,val=sel.value;if(!val)return;
+    if(!state.swaps[current])state.swaps[current]={};state.swaps[current][o]=val;save(state);renderView();}));
+  v.querySelectorAll(".del[data-del]").forEach(b=>b.addEventListener("click",()=>{
+    const o=b.dataset.del,isC=b.dataset.custom==="1";
+    if(isC){state.custom[current]=(state.custom[current]||[]).filter(e=>e[0]!==o);}
+    else{if(state.swaps[current])delete state.swaps[current][o];if(!state.removed[current])state.removed[current]=[];if(state.removed[current].indexOf(o)<0)state.removed[current].push(o);}
+    save(state);renderView();}));
+  const restoreDay=document.getElementById("restoreDay");
+  if(restoreDay)restoreDay.addEventListener("click",()=>{delete state.swaps[current];delete state.removed[current];save(state);renderView();});
   const addEx=document.getElementById("addEx");
   if(addEx)addEx.addEventListener("click",()=>{
     const n=document.getElementById("newName").value.trim();
@@ -678,6 +763,70 @@ function renderNutri(v){
   html+='<div class="note" style="border:none">Ajuste em 2–3 semanas: sem perder gordura → −200 kcal (menos carbo no lanche). Perdendo rápido demais/sem energia → +carbo em volta do treino. Marcou hoje: '+dc+'/4 refeições.</div>';
   v.innerHTML=html;
   v.querySelectorAll(".chk[data-meal]").forEach(c=>c.onclick=()=>{const i=+c.dataset.meal;if(!state.meals[date])state.meals[date]={};state.meals[date][i]=!state.meals[date][i];save(state);renderView();});
+}
+
+/* ---- Corpo (mapa muscular interativo) ---- */
+const MUSCLE_DB={
+ "Peito":{sub:["Superior (clavicular)","Medial","Inferior"],ex:[["Supino inclinado","4×8–12"],["Supino reto","4×6–10"],["Crossover na polia","3×12–15"],["Crucifixo / peck deck","3×12–15"]]},
+ "Costas":{sub:["Dorsal — largura (V)","Meio das costas — espessura","Lombar"],ex:[["Puxada alta / barra fixa","4×8–12"],["Remada curvada / cavalinho","4×8–10"],["Remada na máquina","3×10–12"],["Pullover","3×12–15"]]},
+ "Ombro":{sub:["Deltoide anterior","Deltoide lateral","Deltoide posterior"],ex:[["Desenvolvimento","4×6–10"],["Elevação lateral","4×12–15"],["Elevação frontal","3×12–15"],["Crucifixo inverso","3×12–15"]]},
+ "Bíceps":{sub:["Cabeça longa","Cabeça curta","Braquial"],ex:[["Rosca direta","4×8–12"],["Rosca scott","3×10–12"],["Rosca alternada","3×10–12"],["Rosca martelo","3×12–15"]]},
+ "Tríceps":{sub:["Cabeça longa","Cabeça lateral","Cabeça medial"],ex:[["Tríceps testa","4×8–12"],["Tríceps corda","3×12–15"],["Tríceps francês","3×10–12"],["Mergulho no banco","2×falha"]]},
+ "Trapézio":{sub:["Superior","Médio","Inferior"],ex:[["Encolhimento","4×12–15"],["Remada alta","3×10–12"],["Face pull","3×15–20"]]},
+ "Abdômen":{sub:["Reto (superior/inferior)","Oblíquos","Transverso"],ex:[["Elevação de pernas","3×12–15"],["Crunch na polia","3×15–20"],["Prancha","3×40–60s"],["Russian twist","3×20"]]},
+ "Quadríceps":{sub:["Reto femoral","Vasto lateral","Vasto medial"],ex:[["Agachamento / hack","4×6–10"],["Leg press 45°","4×10–12"],["Cadeira extensora","3×12–15"]]},
+ "Posterior de coxa":{sub:["Bíceps femoral","Semitendíneo","Semimembranáceo"],ex:[["Stiff / terra romeno","3×8–12"],["Mesa flexora","3×10–12"],["Cadeira flexora","3×10–12"]]},
+ "Glúteo":{sub:["Máximo","Médio","Mínimo"],ex:[["Elevação pélvica (hip thrust)","4×10–12"],["Cadeira abdutora","3×12–15"],["Afundo / búlgaro","3×10–12"]]},
+ "Panturrilha":{sub:["Gastrocnêmio","Sóleo"],ex:[["Panturrilha em pé","4×15–20"],["Panturrilha sentado","3×15–20"]]},
+ "Antebraço":{sub:["Flexores","Extensores","Braquiorradial"],ex:[["Rosca inversa","3×12–15"],["Rosca de punho","3×15–20"],["Rosca martelo","3×12–15"]]}
+};
+let selMuscle=null;
+function bodyEmojiFor(m){return ({Peito:"🎽",Costas:"🪃",Ombro:"🔺",Tríceps:"🦾",Bíceps:"💪",Trapézio:"⬆️",Abdômen:"🔥",Quadríceps:"🦵","Posterior de coxa":"🦵",Glúteo:"🍑",Panturrilha:"🦿",Antebraço:"✊"})[m]||"💪";}
+function bodyFrontSVG(){const s='#232c3a',l='#2f3b4c';
+ return '<svg class="bodymap" viewBox="0 0 100 220"><g fill="'+s+'" stroke="'+l+'" stroke-width="0.5">'+
+  '<circle cx="50" cy="15" r="9"/><rect x="46" y="23" width="8" height="6"/>'+
+  '<path d="M30 30 Q50 26 70 30 L74 70 Q50 77 26 70 Z"/>'+
+  '<rect x="18" y="34" width="9" height="36" rx="4"/><rect x="73" y="34" width="9" height="36" rx="4"/>'+
+  '<rect x="38" y="74" width="10" height="60" rx="4"/><rect x="52" y="74" width="10" height="60" rx="4"/>'+
+  '<rect x="39" y="134" width="9" height="48" rx="4"/><rect x="52" y="134" width="9" height="48" rx="4"/></g>'+
+  '<ellipse class="mz" data-m="Ombro" cx="30" cy="36" rx="7" ry="6"/><ellipse class="mz" data-m="Ombro" cx="70" cy="36" rx="7" ry="6"/>'+
+  '<ellipse class="mz" data-m="Peito" cx="42" cy="45" rx="8" ry="6"/><ellipse class="mz" data-m="Peito" cx="58" cy="45" rx="8" ry="6"/>'+
+  '<ellipse class="mz" data-m="Bíceps" cx="23" cy="50" rx="5" ry="9"/><ellipse class="mz" data-m="Bíceps" cx="77" cy="50" rx="5" ry="9"/>'+
+  '<ellipse class="mz" data-m="Antebraço" cx="22" cy="65" rx="5" ry="9"/><ellipse class="mz" data-m="Antebraço" cx="78" cy="65" rx="5" ry="9"/>'+
+  '<rect class="mz" data-m="Abdômen" x="42" y="55" width="16" height="20" rx="3"/>'+
+  '<ellipse class="mz" data-m="Quadríceps" cx="43" cy="100" rx="7" ry="22"/><ellipse class="mz" data-m="Quadríceps" cx="57" cy="100" rx="7" ry="22"/>'+
+  '<ellipse class="mz" data-m="Panturrilha" cx="43" cy="155" rx="6" ry="16"/><ellipse class="mz" data-m="Panturrilha" cx="57" cy="155" rx="6" ry="16"/>'+
+  '<text x="50" y="215" class="bodylbl">FRENTE</text></svg>';
+}
+function bodyBackSVG(){const s='#232c3a',l='#2f3b4c';
+ return '<svg class="bodymap" viewBox="0 0 100 220"><g fill="'+s+'" stroke="'+l+'" stroke-width="0.5">'+
+  '<circle cx="50" cy="15" r="9"/><rect x="46" y="23" width="8" height="6"/>'+
+  '<path d="M30 30 Q50 26 70 30 L74 70 Q50 77 26 70 Z"/>'+
+  '<rect x="18" y="34" width="9" height="36" rx="4"/><rect x="73" y="34" width="9" height="36" rx="4"/>'+
+  '<rect x="38" y="74" width="10" height="60" rx="4"/><rect x="52" y="74" width="10" height="60" rx="4"/>'+
+  '<rect x="39" y="134" width="9" height="48" rx="4"/><rect x="52" y="134" width="9" height="48" rx="4"/></g>'+
+  '<path class="mz" data-m="Trapézio" d="M40 32 Q50 28 60 32 L57 43 Q50 40 43 43 Z"/>'+
+  '<ellipse class="mz" data-m="Costas" cx="42" cy="53" rx="8" ry="9"/><ellipse class="mz" data-m="Costas" cx="58" cy="53" rx="8" ry="9"/>'+
+  '<ellipse class="mz" data-m="Tríceps" cx="23" cy="50" rx="5" ry="9"/><ellipse class="mz" data-m="Tríceps" cx="77" cy="50" rx="5" ry="9"/>'+
+  '<ellipse class="mz" data-m="Glúteo" cx="44" cy="82" rx="7" ry="7"/><ellipse class="mz" data-m="Glúteo" cx="56" cy="82" rx="7" ry="7"/>'+
+  '<ellipse class="mz" data-m="Posterior de coxa" cx="43" cy="105" rx="7" ry="18"/><ellipse class="mz" data-m="Posterior de coxa" cx="57" cy="105" rx="7" ry="18"/>'+
+  '<ellipse class="mz" data-m="Panturrilha" cx="43" cy="155" rx="6" ry="16"/><ellipse class="mz" data-m="Panturrilha" cx="57" cy="155" rx="6" ry="16"/>'+
+  '<text x="50" y="215" class="bodylbl">COSTAS</text></svg>';
+}
+function muscleDetailHTML(m){
+  if(!m||!MUSCLE_DB[m])return '<div class="empty">👆 Toque num músculo (frente ou costas) pra ver as divisões e os exercícios pra crescer.</div>';
+  const d=MUSCLE_DB[m];
+  return '<div class="mdetail"><div class="mdhead">'+bodyEmojiFor(m)+' <span>'+m+'</span></div>'+
+   '<div class="msubs">Divisões: '+d.sub.map(x=>'<span class="msub">'+x+'</span>').join('')+'</div>'+
+   '<div class="note" style="border:none;margin:6px 0 4px">Pra crescer: ~8–12 reps, 3–4 séries, com sobrecarga progressiva.</div>'+
+   d.ex.map(e=>'<div class="mex"><span class="mexn">'+e[0]+'</span><span class="mexr">'+e[1]+'</span></div>').join('')+'</div>';
+}
+function renderBody(v){
+  let html='<div class="dayhead"><div><h2>🧍 Corpo — músculos</h2><div class="focus">Toque num músculo pra ver as divisões e os exercícios pra crescer</div></div></div>';
+  html+='<div class="bodyviews">'+bodyFrontSVG()+bodyBackSVG()+'</div>';
+  html+='<div id="muscleDetail">'+muscleDetailHTML(selMuscle)+'</div>';
+  v.innerHTML=html;
+  v.querySelectorAll(".mz[data-m]").forEach(z=>{if(z.dataset.m===selMuscle)z.classList.add("sel");z.addEventListener("click",()=>{selMuscle=z.dataset.m;renderBody(v);});});
 }
 
 let chart=null;
