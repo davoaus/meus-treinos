@@ -68,17 +68,16 @@
         ]
       },
       "Sexta": {
-        "foco": "Biceps + Triceps",
+        "foco": "Upper (superior completo)",
         "corrida": null,
         "exercicios": [
-          { "nome": "Rosca direta com barra", "series": 4, "reps": "8-12", "descanso_s": 75 },
-          { "nome": "Rosca scott (banco)", "series": 3, "reps": "10-12", "descanso_s": 60 },
-          { "nome": "Rosca alternada com halteres", "series": 3, "reps": "10-12", "descanso_s": 60 },
-          { "nome": "Rosca martelo", "series": 3, "reps": "12-15", "descanso_s": 60 },
-          { "nome": "Triceps testa (barra W)", "series": 4, "reps": "8-12", "descanso_s": 75 },
-          { "nome": "Triceps frances com halter", "series": 3, "reps": "10-12", "descanso_s": 60 },
-          { "nome": "Triceps corda na polia", "series": 3, "reps": "12-15", "descanso_s": 60 },
-          { "nome": "Mergulho no banco", "series": 2, "reps": "ate falha", "descanso_s": 60 }
+          { "nome": "Supino inclinado com halteres", "series": 4, "reps": "8-12", "descanso_s": 90 },
+          { "nome": "Puxada alta frontal", "series": 4, "reps": "8-12", "descanso_s": 120 },
+          { "nome": "Crossover na polia", "series": 3, "reps": "12-15", "descanso_s": 60 },
+          { "nome": "Remada na maquina", "series": 3, "reps": "10-12", "descanso_s": 75 },
+          { "nome": "Elevacao lateral", "series": 3, "reps": "12-15", "descanso_s": 60 },
+          { "nome": "Rosca direta com barra", "series": 3, "reps": "8-12", "descanso_s": 75 },
+          { "nome": "Triceps corda na polia", "series": 3, "reps": "12-15", "descanso_s": 60 }
         ]
       },
       "Sabado": { "foco": "Descanso da academia", "corrida": "Longao", "exercicios": [] },
