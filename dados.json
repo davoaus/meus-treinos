@@ -13,96 +13,423 @@
         "foco": "Peito + Triceps",
         "corrida": "Intervalado",
         "exercicios": [
-          { "nome": "Supino reto na maquina", "series": 4, "reps": "6-10", "descanso_s": 120 },
-          { "nome": "Supino inclinado na maquina", "series": 3, "reps": "8-12", "descanso_s": 90 },
-          { "nome": "Supino declinado na maquina", "series": 3, "reps": "8-12", "descanso_s": 75 },
-          { "nome": "Crossover na polia", "series": 3, "reps": "12-15", "descanso_s": 60 },
-          { "nome": "Triceps testa (barra W)", "series": 3, "reps": "8-12", "descanso_s": 75 },
-          { "nome": "Triceps corda na polia", "series": 3, "reps": "12-15", "descanso_s": 60 },
-          { "nome": "Mergulho / triceps no banco", "series": 2, "reps": "ate falha", "descanso_s": 60 }
+          {
+            "nome": "Supino reto na maquina",
+            "series": 4,
+            "reps": "6-10",
+            "descanso_s": 120,
+            "grupo": "Peito",
+            "parte": "Peito medial/geral"
+          },
+          {
+            "nome": "Supino inclinado na maquina",
+            "series": 3,
+            "reps": "8-12",
+            "descanso_s": 90,
+            "grupo": "Peito",
+            "parte": "Peito superior (clavicular)"
+          },
+          {
+            "nome": "Supino declinado na maquina",
+            "series": 3,
+            "reps": "8-12",
+            "descanso_s": 75,
+            "grupo": "Peito",
+            "parte": "Peito inferior"
+          },
+          {
+            "nome": "Crossover na polia",
+            "series": 3,
+            "reps": "12-15",
+            "descanso_s": 60,
+            "grupo": "Peito",
+            "parte": "Linha media - definicao"
+          },
+          {
+            "nome": "Triceps testa (barra W)",
+            "series": 3,
+            "reps": "8-12",
+            "descanso_s": 75,
+            "grupo": "Triceps",
+            "parte": "Cabeca longa"
+          },
+          {
+            "nome": "Triceps corda na polia",
+            "series": 3,
+            "reps": "12-15",
+            "descanso_s": 60,
+            "grupo": "Triceps",
+            "parte": "Cabeca lateral/medial"
+          },
+          {
+            "nome": "Mergulho / triceps no banco",
+            "series": 2,
+            "reps": "ate falha",
+            "descanso_s": 60,
+            "grupo": "Triceps",
+            "parte": "Triceps geral (3 cabecas)"
+          }
         ]
       },
       "Terca": {
         "foco": "Costas + Biceps",
         "corrida": null,
         "exercicios": [
-          { "nome": "Barra fixa (ou puxada alta)", "series": 4, "reps": "6-10", "descanso_s": 120 },
-          { "nome": "Remada cavalinho (T-bar)", "series": 4, "reps": "8-10", "descanso_s": 120 },
-          { "nome": "Remada na maquina (pegada neutra)", "series": 3, "reps": "10-12", "descanso_s": 90 },
-          { "nome": "Remada baixa na polia", "series": 3, "reps": "10-12", "descanso_s": 75 },
-          { "nome": "Pullover na polia", "series": 3, "reps": "12-15", "descanso_s": 60 },
-          { "nome": "Rosca direta com barra", "series": 3, "reps": "8-12", "descanso_s": 75 },
-          { "nome": "Rosca alternada com halteres", "series": 3, "reps": "10-12", "descanso_s": 60 },
-          { "nome": "Rosca martelo", "series": 2, "reps": "12-15", "descanso_s": 60 }
+          {
+            "nome": "Barra fixa (ou puxada alta)",
+            "series": 4,
+            "reps": "6-10",
+            "descanso_s": 120,
+            "grupo": "Costas",
+            "parte": "Dorsal - largura (V)"
+          },
+          {
+            "nome": "Remada cavalinho (T-bar)",
+            "series": 4,
+            "reps": "8-10",
+            "descanso_s": 120,
+            "grupo": "Costas",
+            "parte": "Meio das costas - espessura"
+          },
+          {
+            "nome": "Remada na maquina (pegada neutra)",
+            "series": 3,
+            "reps": "10-12",
+            "descanso_s": 90,
+            "grupo": "Costas",
+            "parte": "Meio das costas - espessura"
+          },
+          {
+            "nome": "Remada baixa na polia",
+            "series": 3,
+            "reps": "10-12",
+            "descanso_s": 75,
+            "grupo": "Costas",
+            "parte": "Meio das costas"
+          },
+          {
+            "nome": "Pullover na polia",
+            "series": 3,
+            "reps": "12-15",
+            "descanso_s": 60,
+            "grupo": "Costas",
+            "parte": "Dorsal inferior + serratil"
+          },
+          {
+            "nome": "Rosca direta com barra",
+            "series": 3,
+            "reps": "8-12",
+            "descanso_s": 75,
+            "grupo": "Biceps",
+            "parte": "Biceps geral (curta e longa)"
+          },
+          {
+            "nome": "Rosca alternada com halteres",
+            "series": 3,
+            "reps": "10-12",
+            "descanso_s": 60,
+            "grupo": "Biceps",
+            "parte": "Biceps geral"
+          },
+          {
+            "nome": "Rosca martelo",
+            "series": 2,
+            "reps": "12-15",
+            "descanso_s": 60,
+            "grupo": "Biceps",
+            "parte": "Braquial - antebraco"
+          }
         ]
       },
       "Quarta": {
         "foco": "Ombros + Abdomen",
         "corrida": "Tempo Run",
         "exercicios": [
-          { "nome": "Desenvolvimento militar", "series": 4, "reps": "6-10", "descanso_s": 120 },
-          { "nome": "Elevacao lateral com halteres", "series": 4, "reps": "12-15", "descanso_s": 60 },
-          { "nome": "Desenvolvimento Arnold ou maquina", "series": 3, "reps": "10-12", "descanso_s": 90 },
-          { "nome": "Elevacao frontal", "series": 3, "reps": "12-15", "descanso_s": 60 },
-          { "nome": "Crucifixo inverso (posterior)", "series": 3, "reps": "12-15", "descanso_s": 60 },
-          { "nome": "Encolhimento (trapezio)", "series": 3, "reps": "12-15", "descanso_s": 60 },
-          { "nome": "Abdomen - Prancha", "series": 3, "reps": "40-60s", "descanso_s": 30 },
-          { "nome": "Abdomen - Elevacao de pernas", "series": 3, "reps": "12-15", "descanso_s": 45 },
-          { "nome": "Abdomen - Crunch na polia", "series": 3, "reps": "15-20", "descanso_s": 45 },
-          { "nome": "Abdomen - Russian twist", "series": 3, "reps": "20 (10/lado)", "descanso_s": 45 }
+          {
+            "nome": "Desenvolvimento militar",
+            "series": 4,
+            "reps": "6-10",
+            "descanso_s": 120,
+            "grupo": "Ombro",
+            "parte": "Deltoide anterior (+ lateral)"
+          },
+          {
+            "nome": "Elevacao lateral com halteres",
+            "series": 4,
+            "reps": "12-15",
+            "descanso_s": 60,
+            "grupo": "Ombro",
+            "parte": "Deltoide lateral (largura)"
+          },
+          {
+            "nome": "Desenvolvimento Arnold ou maquina",
+            "series": 3,
+            "reps": "10-12",
+            "descanso_s": 90,
+            "grupo": "Ombro",
+            "parte": "Deltoide anterior + lateral"
+          },
+          {
+            "nome": "Elevacao frontal",
+            "series": 3,
+            "reps": "12-15",
+            "descanso_s": 60,
+            "grupo": "Ombro",
+            "parte": "Deltoide anterior"
+          },
+          {
+            "nome": "Crucifixo inverso (posterior)",
+            "series": 3,
+            "reps": "12-15",
+            "descanso_s": 60,
+            "grupo": "Ombro",
+            "parte": "Deltoide posterior"
+          },
+          {
+            "nome": "Encolhimento (trapezio)",
+            "series": 3,
+            "reps": "12-15",
+            "descanso_s": 60,
+            "grupo": "Trapezio",
+            "parte": "Trapezio superior"
+          },
+          {
+            "nome": "Abdomen - Prancha",
+            "series": 3,
+            "reps": "40-60s",
+            "descanso_s": 30,
+            "grupo": "Abdomen",
+            "parte": "Core - estabilizacao"
+          },
+          {
+            "nome": "Abdomen - Elevacao de pernas",
+            "series": 3,
+            "reps": "12-15",
+            "descanso_s": 45,
+            "grupo": "Abdomen",
+            "parte": "Abdomen inferior"
+          },
+          {
+            "nome": "Abdomen - Crunch na polia",
+            "series": 3,
+            "reps": "15-20",
+            "descanso_s": 45,
+            "grupo": "Abdomen",
+            "parte": "Abdomen superior (reto)"
+          },
+          {
+            "nome": "Abdomen - Russian twist",
+            "series": 3,
+            "reps": "20 (10/lado)",
+            "descanso_s": 45,
+            "grupo": "Abdomen",
+            "parte": "Obliquos"
+          }
         ]
       },
       "Quinta": {
         "foco": "Perna (completo)",
         "corrida": null,
         "exercicios": [
-          { "nome": "Agachamento hack (maquina)", "series": 4, "reps": "6-10", "descanso_s": 150 },
-          { "nome": "Leg press 45", "series": 4, "reps": "10-12", "descanso_s": 120 },
-          { "nome": "Cadeira extensora", "series": 3, "reps": "12-15", "descanso_s": 60 },
-          { "nome": "Levantamento terra romeno (stiff)", "series": 3, "reps": "8-12", "descanso_s": 120 },
-          { "nome": "Mesa flexora", "series": 3, "reps": "10-12", "descanso_s": 75 },
-          { "nome": "Cadeira adutora (fecha as pernas)", "series": 3, "reps": "12-15", "descanso_s": 60 },
-          { "nome": "Cadeira abdutora (abre as pernas)", "series": 3, "reps": "12-15", "descanso_s": 60 },
-          { "nome": "Panturrilha em pe", "series": 4, "reps": "15-20", "descanso_s": 45 },
-          { "nome": "Panturrilha sentado", "series": 3, "reps": "15-20", "descanso_s": 45 }
+          {
+            "nome": "Agachamento hack (maquina)",
+            "series": 4,
+            "reps": "6-10",
+            "descanso_s": 150,
+            "grupo": "Perna",
+            "parte": "Quadriceps (+ gluteo)"
+          },
+          {
+            "nome": "Leg press 45",
+            "series": 4,
+            "reps": "10-12",
+            "descanso_s": 120,
+            "grupo": "Perna",
+            "parte": "Quadriceps e gluteo"
+          },
+          {
+            "nome": "Cadeira extensora",
+            "series": 3,
+            "reps": "12-15",
+            "descanso_s": 60,
+            "grupo": "Perna",
+            "parte": "Quadriceps (isolado)"
+          },
+          {
+            "nome": "Levantamento terra romeno (stiff)",
+            "series": 3,
+            "reps": "8-12",
+            "descanso_s": 120,
+            "grupo": "Perna",
+            "parte": "Posterior de coxa + gluteo"
+          },
+          {
+            "nome": "Mesa flexora",
+            "series": 3,
+            "reps": "10-12",
+            "descanso_s": 75,
+            "grupo": "Perna",
+            "parte": "Posterior de coxa (isolado)"
+          },
+          {
+            "nome": "Cadeira adutora (fecha as pernas)",
+            "series": 3,
+            "reps": "12-15",
+            "descanso_s": 60,
+            "grupo": "Perna",
+            "parte": "Adutores (parte interna)"
+          },
+          {
+            "nome": "Cadeira abdutora (abre as pernas)",
+            "series": 3,
+            "reps": "12-15",
+            "descanso_s": 60,
+            "grupo": "Perna",
+            "parte": "Gluteo medio (parte externa)"
+          },
+          {
+            "nome": "Panturrilha em pe",
+            "series": 4,
+            "reps": "15-20",
+            "descanso_s": 45,
+            "grupo": "Perna",
+            "parte": "Panturrilha - gastrocnemio"
+          },
+          {
+            "nome": "Panturrilha sentado",
+            "series": 3,
+            "reps": "15-20",
+            "descanso_s": 45,
+            "grupo": "Perna",
+            "parte": "Panturrilha - soleo"
+          }
         ]
       },
       "Sexta": {
         "foco": "Upper (superior completo)",
         "corrida": null,
         "exercicios": [
-          { "nome": "Supino inclinado com halteres", "series": 4, "reps": "8-12", "descanso_s": 90 },
-          { "nome": "Puxada alta frontal", "series": 4, "reps": "8-12", "descanso_s": 120 },
-          { "nome": "Crossover na polia", "series": 3, "reps": "12-15", "descanso_s": 60 },
-          { "nome": "Remada na maquina", "series": 3, "reps": "10-12", "descanso_s": 75 },
-          { "nome": "Elevacao lateral", "series": 3, "reps": "12-15", "descanso_s": 60 },
-          { "nome": "Rosca direta com barra", "series": 3, "reps": "8-12", "descanso_s": 75 },
-          { "nome": "Triceps corda na polia", "series": 3, "reps": "12-15", "descanso_s": 60 }
+          {
+            "nome": "Supino inclinado com halteres",
+            "series": 4,
+            "reps": "8-12",
+            "descanso_s": 90,
+            "grupo": "Peito",
+            "parte": "Peito superior (clavicular)"
+          },
+          {
+            "nome": "Puxada alta frontal",
+            "series": 4,
+            "reps": "8-12",
+            "descanso_s": 120,
+            "grupo": "Costas",
+            "parte": "Dorsal - largura (V)"
+          },
+          {
+            "nome": "Crossover na polia",
+            "series": 3,
+            "reps": "12-15",
+            "descanso_s": 60,
+            "grupo": "Peito",
+            "parte": "Linha media - definicao"
+          },
+          {
+            "nome": "Remada na maquina",
+            "series": 3,
+            "reps": "10-12",
+            "descanso_s": 75,
+            "grupo": "Costas",
+            "parte": "Meio das costas - espessura"
+          },
+          {
+            "nome": "Elevacao lateral",
+            "series": 3,
+            "reps": "12-15",
+            "descanso_s": 60,
+            "grupo": "Ombro",
+            "parte": "Deltoide lateral (largura)"
+          },
+          {
+            "nome": "Rosca direta com barra",
+            "series": 3,
+            "reps": "8-12",
+            "descanso_s": 75,
+            "grupo": "Biceps",
+            "parte": "Biceps geral (curta e longa)"
+          },
+          {
+            "nome": "Triceps corda na polia",
+            "series": 3,
+            "reps": "12-15",
+            "descanso_s": 60,
+            "grupo": "Triceps",
+            "parte": "Cabeca lateral/medial"
+          }
         ]
       },
-      "Sabado": { "foco": "Descanso da academia", "corrida": "Longao", "exercicios": [] },
-      "Domingo": { "foco": "Descanso total", "corrida": null, "exercicios": [] }
+      "Sabado": {
+        "foco": "Descanso da academia",
+        "corrida": "Longao",
+        "exercicios": []
+      },
+      "Domingo": {
+        "foco": "Descanso total",
+        "corrida": null,
+        "exercicios": []
+      }
     }
   },
   "corrida": {
-    "dias": ["Segunda (Intervalado)", "Quarta (Tempo Run)", "Sabado (Longao)"],
+    "dias": [
+      "Segunda (Intervalado)",
+      "Quarta (Tempo Run)",
+      "Sabado (Longao)"
+    ],
     "semanas": {
-      "1": { "Segunda": "8x400m a 5:30/km c/ 1:30 trote", "Quarta": "20 min continuo a 6:00/km", "Sabado": "6 km leve a 6:30/km" },
-      "2": { "Segunda": "6x600m a 5:30/km c/ 2:00 trote", "Quarta": "3 km a 5:50/km + 5 min trote + 1 km forte", "Sabado": "7 km leve a 6:30/km" },
-      "3": { "Segunda": "5x800m a 5:35/km c/ 2:00 trote", "Quarta": "25 min continuo a 5:55/km", "Sabado": "8 km leve a 6:25/km" },
-      "4": { "Segunda": "3x1km a 5:40/km c/ 3:00 trote", "Quarta": "15 min leve a 6:30/km", "Sabado": "Teste de 3 km" }
+      "1": {
+        "Segunda": "8x400m a 5:30/km c/ 1:30 trote",
+        "Quarta": "20 min continuo a 6:00/km",
+        "Sabado": "6 km leve a 6:30/km"
+      },
+      "2": {
+        "Segunda": "6x600m a 5:30/km c/ 2:00 trote",
+        "Quarta": "3 km a 5:50/km + 5 min trote + 1 km forte",
+        "Sabado": "7 km leve a 6:30/km"
+      },
+      "3": {
+        "Segunda": "5x800m a 5:35/km c/ 2:00 trote",
+        "Quarta": "25 min continuo a 5:55/km",
+        "Sabado": "8 km leve a 6:25/km"
+      },
+      "4": {
+        "Segunda": "3x1km a 5:40/km c/ 3:00 trote",
+        "Quarta": "15 min leve a 6:30/km",
+        "Sabado": "Teste de 3 km"
+      }
     }
   },
   "nutricao": {
     "objetivo": "recomposicao",
-    "metas": { "kcal": "2500-2700", "proteina_g": 170, "carbo_g": "250-300", "gordura_g": "70-80" },
+    "metas": {
+      "kcal": "2500-2700",
+      "proteina_g": 170,
+      "carbo_g": "250-300",
+      "gordura_g": "70-80"
+    },
     "carbo_por_dia": {
-      "Segunda": "mod-alto", "Terca": "moderado", "Quarta": "moderado", "Quinta": "alto",
-      "Sexta": "moderado", "Sabado": "alto", "Domingo": "baixo"
+      "Segunda": "mod-alto",
+      "Terca": "moderado",
+      "Quarta": "moderado",
+      "Quinta": "alto",
+      "Sexta": "moderado",
+      "Sabado": "alto",
+      "Domingo": "baixo"
     },
     "refeicoes": [
       {
-        "nome": "Cafe da manha", "hora": "07:30", "proteina_g": 35,
+        "nome": "Cafe da manha",
+        "hora": "07:30",
+        "proteina_g": 35,
         "opcoes": [
           "3-4 ovos mexidos + 2 fatias de pao integral + 1 fruta",
           "40 g de aveia + 1 scoop de whey + banana + canela",
@@ -111,7 +438,9 @@
         ]
       },
       {
-        "nome": "Almoco", "hora": "12:30", "proteina_g": 45,
+        "nome": "Almoco",
+        "hora": "12:30",
+        "proteina_g": 45,
         "opcoes": [
           "Frango grelhado + arroz + feijao + salada",
           "Patinho/carne magra + batata + legumes refogados",
@@ -121,7 +450,9 @@
         ]
       },
       {
-        "nome": "Pos-treino (Whey)", "hora": "apos treinar", "proteina_g": 40,
+        "nome": "Pos-treino (Whey)",
+        "hora": "apos treinar",
+        "proteina_g": 40,
         "opcoes": [
           "1-2 scoops de whey + 1 banana",
           "Whey + 1 tapioca simples",
@@ -130,7 +461,9 @@
         ]
       },
       {
-        "nome": "Lanche da noite", "hora": "20:30", "proteina_g": 38,
+        "nome": "Lanche da noite",
+        "hora": "20:30",
+        "proteina_g": 38,
         "opcoes": [
           "Sanduiche natural: pao integral + frango/atum + queijo + folhas",
           "Iogurte grego + 1 scoop de whey + fruta",

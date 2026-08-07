@@ -82,6 +82,11 @@ h1 b{color:var(--accent)}
 .chk{width:26px;height:26px;flex:0 0 auto;border:2px solid var(--line2);border-radius:8px;background:#0c1119;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff;margin-top:1px;transition:.15s}
 .chk.on{background:linear-gradient(180deg,var(--ok),#1f9d6b);border-color:transparent;box-shadow:0 0 12px rgba(53,196,138,.5)}
 .exname{font-weight:700;font-size:15px;color:#f2f6fb}
+.grouphead{display:flex;align-items:center;gap:8px;margin:20px 0 10px;font-size:16px;font-weight:800;
+  letter-spacing:.6px;text-transform:uppercase;color:#fff;background:linear-gradient(90deg,rgba(77,159,255,.18),rgba(77,159,255,0));
+  border-left:4px solid var(--accent);border-radius:8px;padding:9px 12px}
+.region{display:inline-block;margin-top:4px;background:rgba(232,176,75,.13);border:1px solid rgba(232,176,75,.3);
+  color:var(--gold);border-radius:8px;padding:2px 9px;font-size:11.5px;font-weight:700}
 .extarget{color:var(--muted);font-size:12.5px}
 .rm{color:var(--down);font-size:12px;cursor:pointer;opacity:.75}
 .rm:hover{opacity:1}
@@ -229,6 +234,65 @@ const BASE = {
   ]},
   "Sábado": {focus:"Descanso da academia", run:"Longão", reduced:false, ex:[]},
 };
+const EXERCISE_INFO={
+ "Supino reto na máquina":{g:"Peito",r:"Peito medial/geral"},
+ "Supino reto com barra":{g:"Peito",r:"Peito medial/geral"},
+ "Supino reto com halteres":{g:"Peito",r:"Peito medial/geral"},
+ "Supino inclinado na máquina":{g:"Peito",r:"Peito superior (clavicular)"},
+ "Supino inclinado com halteres":{g:"Peito",r:"Peito superior (clavicular)"},
+ "Supino inclinado com barra":{g:"Peito",r:"Peito superior (clavicular)"},
+ "Supino declinado na máquina":{g:"Peito",r:"Peito inferior"},
+ "Crossover na polia":{g:"Peito",r:"Linha média · definição"},
+ "Crucifixo na máquina (peck deck)":{g:"Peito",r:"Peito · alongamento"},
+ "Crucifixo ou crossover":{g:"Peito",r:"Peito · definição"},
+ "Tríceps testa (barra W)":{g:"Tríceps",r:"Cabeça longa"},
+ "Tríceps corda na polia":{g:"Tríceps",r:"Cabeça lateral/medial"},
+ "Tríceps francês com halter":{g:"Tríceps",r:"Cabeça longa"},
+ "Tríceps na polia (variação de pegada)":{g:"Tríceps",r:"Cabeça lateral"},
+ "Mergulho / tríceps no banco":{g:"Tríceps",r:"Tríceps geral (3 cabeças)"},
+ "Mergulho no banco":{g:"Tríceps",r:"Tríceps geral (3 cabeças)"},
+ "Barra fixa (ou puxada alta)":{g:"Costas",r:"Dorsal · largura (V)"},
+ "Puxada alta":{g:"Costas",r:"Dorsal · largura (V)"},
+ "Puxada alta frontal":{g:"Costas",r:"Dorsal · largura (V)"},
+ "Puxada na polia (pegada neutra)":{g:"Costas",r:"Dorsal · largura"},
+ "Remada cavalinho (T-bar)":{g:"Costas",r:"Meio das costas · espessura"},
+ "Remada curvada com barra":{g:"Costas",r:"Meio das costas · espessura"},
+ "Remada na máquina":{g:"Costas",r:"Meio das costas · espessura"},
+ "Remada na máquina (pegada neutra)":{g:"Costas",r:"Meio das costas · espessura"},
+ "Remada baixa na polia":{g:"Costas",r:"Meio das costas"},
+ "Remada baixa":{g:"Costas",r:"Meio das costas"},
+ "Remada unilateral (serrote)":{g:"Costas",r:"Dorsal · unilateral"},
+ "Pullover na polia":{g:"Costas",r:"Dorsal inferior + serrátil"},
+ "Rosca direta com barra":{g:"Bíceps",r:"Bíceps · geral (curta e longa)"},
+ "Rosca alternada com halteres":{g:"Bíceps",r:"Bíceps · geral"},
+ "Rosca martelo":{g:"Bíceps",r:"Braquial · antebraço"},
+ "Rosca scott (banco)":{g:"Bíceps",r:"Cabeça curta · pico"},
+ "Rosca direta na polia":{g:"Bíceps",r:"Bíceps · tensão contínua"},
+ "Desenvolvimento militar":{g:"Ombro",r:"Deltoide anterior (+ lateral)"},
+ "Desenvolvimento Arnold ou máquina":{g:"Ombro",r:"Deltoide anterior + lateral"},
+ "Desenvolvimento na máquina":{g:"Ombro",r:"Deltoide anterior"},
+ "Elevação lateral":{g:"Ombro",r:"Deltoide lateral (largura)"},
+ "Elevação lateral com halteres":{g:"Ombro",r:"Deltoide lateral (largura)"},
+ "Elevação frontal":{g:"Ombro",r:"Deltoide anterior"},
+ "Crucifixo inverso (post.)":{g:"Ombro",r:"Deltoide posterior"},
+ "Face pull na polia":{g:"Ombro",r:"Deltoide posterior · saúde do ombro"},
+ "Encolhimento (trapézio)":{g:"Trapézio",r:"Trapézio superior"},
+ "Agachamento hack (máquina)":{g:"Perna",r:"Quadríceps (+ glúteo)"},
+ "Agachamento livre":{g:"Perna",r:"Quadríceps + glúteo"},
+ "Leg press 45°":{g:"Perna",r:"Quadríceps e glúteo"},
+ "Cadeira extensora":{g:"Perna",r:"Quadríceps (isolado)"},
+ "Levantamento terra romeno (stiff)":{g:"Perna",r:"Posterior de coxa + glúteo"},
+ "Mesa flexora":{g:"Perna",r:"Posterior de coxa (isolado)"},
+ "Cadeira adutora (fecha as pernas)":{g:"Perna",r:"Adutores (parte interna)"},
+ "Cadeira abdutora (abre as pernas)":{g:"Perna",r:"Glúteo médio (parte externa)"},
+ "Panturrilha em pé":{g:"Perna",r:"Panturrilha · gastrocnêmio"},
+ "Panturrilha sentado":{g:"Perna",r:"Panturrilha · sóleo"},
+ "Abdômen — Prancha":{g:"Abdômen",r:"Core · estabilização"},
+ "Abdômen — Elevação de pernas":{g:"Abdômen",r:"Abdômen inferior"},
+ "Abdômen — Crunch na polia":{g:"Abdômen",r:"Abdômen superior (reto)"},
+ "Abdômen — Russian twist":{g:"Abdômen",r:"Oblíquos"}
+};
+function grpEmoji(g){return ({Peito:"🎽",Costas:"🪃",Ombro:"🔺",Tríceps:"🦾",Bíceps:"💪",Perna:"🦵",Abdômen:"🔥",Trapézio:"⬆️"})[g]||"•";}
 const DAYS = ["Segunda","Terça","Quarta","Quinta","Sexta","Sábado"];
 const JS_TO_DAY = {1:"Segunda",2:"Terça",3:"Quarta",4:"Quinta",5:"Sexta",6:"Sábado",0:null};
 const KEY="davo_treino_v1";
@@ -366,7 +430,9 @@ function renderView(){
   if(current==="__run"){renderRun(v);return;}
   const day=BASE[current];const date=todayStr();
   const list=planFor(current);
-  let done=0;const total=list.length;
+  const _go=[],_gb={};list.forEach(e=>{const g=(EXERCISE_INFO[e[0]]||{}).g||"Outros";if(!_gb[g]){_gb[g]=[];_go.push(g);}_gb[g].push(e);});
+  const glist=[];_go.forEach(g=>_gb[g].forEach(e=>glist.push(e)));
+  let done=0;const total=list.length;let lastGroup=null;
   let html='<div class="dayhead"><div><h2>'+current+'</h2><div class="focus">'+day.focus+'</div></div>'+
     (day.run?'<span class="badge run">🏃 '+day.run+'</span>':'')+'</div>';
   if(day.reduced)html+='<span class="badge soft">Versão enxuta (dia de corrida) • ~45 min</span>';
@@ -374,8 +440,10 @@ function renderView(){
   let totSec=WARMUP;list.forEach(e=>{totSec+=exTimeSec(e[1],e[4]);});
   html+='<div class="timebadge">⏱ Tempo estimado do treino: <b>~'+fmtMin(totSec)+' min</b> <span class="tb2">(com ~8 min de aquecimento)</span></div>';
   html+='<div class="progresswrap"><div class="progressbar" id="pbar"></div></div>';
-  list.forEach((e,i)=>{
+  glist.forEach((e,i)=>{
     const [name,sets,reps,isCustom,rest]=e;const en=entry(date,name);
+    const _gi=EXERCISE_INFO[name]||{};const _grp=_gi.g||"Outros";const _reg=_gi.r||"";
+    if(_grp!==lastGroup){html+='<div class="grouphead">'+grpEmoji(_grp)+' '+_grp+'</div>';lastGroup=_grp;}
     if(en.done)done++;
     while(en.sets.length<sets)en.sets.push({w:"",r:""});
     const nRows=Math.max(sets,en.sets.length);
@@ -406,6 +474,7 @@ function renderView(){
       '<div class="exhead">'+
         '<div class="chk'+(en.done?' on':'')+'" data-done="'+esc(lk(date,name))+'">'+(en.done?'✓':'')+'</div>'+
         '<div style="flex:1"><div class="exname">'+esc(name)+'</div>'+
+        (_reg?'<div class="region">🎯 '+esc(_reg)+'</div>':'')+
         '<div class="extarget">Alvo: '+sets+' × '+reps+' · desc. '+rest+'s'+(isCustom?' &nbsp;·&nbsp; <span class="rm" data-rmex="'+esc(name)+'">remover</span>':'')+'</div></div>'+
       '</div>'+lastInfo+targetSuggestion(prev,reps,rest)+
       '<div class="sets">'+setRows+'</div>'+
